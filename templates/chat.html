@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AIチャットボット - テキスト解析機能付き</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="chat-container">
+      <div class="chat-header">
+        <h1>🤖 AIチャットボット</h1>
+        <p>テキスト解析とインテリジェント応答機能</p>
+        <div class="status-indicators">
+          <div class="status-item">
+            <span class="status-label">感情分析:</span>
+            <span id="sentimentIndicator" class="status-value">-</span>
+          </div>
+          <div class="status-item">
+            <span class="status-label">意図:</span>
+            <span id="intentIndicator" class="status-value">-</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot-message">
+          <div class="message-content">
+            <strong>ボット:</strong>
+            こんにちは！私はAIチャットボットです。テキスト解析機能でメッセージの感情や意図を理解します。何でも話しかけてください！
+          </div>
+          <div class="message-time"></div>
+        </div>
+      </div>
+
+      <div class="chat-input">
+        <div class="input-container">
+          <input
+            type="text"
+            id="messageInput"
+            placeholder="メッセージを入力してください..."
+            autocomplete="off"
+          />
+          <button id="sendButton" onclick="sendMessage()">
+            <span>送信</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="chat-footer">
+        <button onclick="clearChat()" class="action-button clear-button">
+          🗑️ チャットをクリア
+        </button>
+        <button onclick="loadHistory()" class="action-button history-button">
+          📋 履歴を読み込み
+        </button>
+        <button
+          onclick="showAnalytics()"
+          class="action-button analytics-button"
+        >
+          📊 分析結果
+        </button>
+      </div>
+    </div>
+
+    <div id="loadingIndicator" class="loading-indicator">
+      <div class="spinner"></div>
+      <span>AIが分析中...</span>
+    </div>
+
+    <!-- 分析結果モーダル -->
+    <div id="analyticsModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>📊 会話分析結果</h2>
+          <span class="close" onclick="closeAnalytics()">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div class="analytics-section">
+            <h3>感情分析</h3>
+            <div id="sentimentChart" class="chart-container"></div>
+          </div>
+          <div class="analytics-section">
+            <h3>よく使われる意図</h3>
+            <div id="intentChart" class="chart-container"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+  </body>
+</html>
