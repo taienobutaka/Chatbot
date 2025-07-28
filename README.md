@@ -540,20 +540,6 @@ INSERT INTO knowledge_base (keyword, response, category) VALUES
 - **SSH Clone**: `git@github.com:taienobutaka/Chatbot.git`
 - **HTTPS Clone**: `https://github.com/taienobutaka/Chatbot.git`
 
-### 👥 コントリビューション
-
-プルリクエストやイシューは歓迎します！以下の手順でご貢献ください：
-
-1. このリポジトリをフォーク
-2. フィーチャーブランチを作成（`git checkout -b feature/amazing-feature`）
-3. 変更をコミット（`git commit -m 'Add some amazing feature'`）
-4. ブランチにプッシュ（`git push origin feature/amazing-feature`）
-5. プルリクエストを作成
-
-### ⭐ サポート
-
-このプロジェクトが役に立った場合は、ぜひ GitHub でスターをつけてください！
-
 ## 📝 ライセンス
 
 このプロジェクトは MIT ライセンスの下で公開されています。
