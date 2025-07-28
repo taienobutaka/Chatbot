@@ -4,7 +4,22 @@ Python で開発されたシンプルな AI チャットボットです。テキ
 
 ![メイン画面](<スクリーンショット 2025-07-28 141703.png>)
 
-## 🚀 機能
+## � 目次
+
+- [🚀 機能](#-機能)
+- [🛠️ 技術スタック](#️-技術スタック)
+- [📁 プロジェクト構造](#-プロジェクト構造)
+- [🛠️ インストール・セットアップ](#️-インストールセットアップ)
+- [🚀 クイックスタート](#-クイックスタート)
+- [🌐 アクセス情報](#-アクセス情報)
+- [🛠️ Makefile コマンド一覧](#️-makefile-コマンド一覧)
+- [📊 データベーススキーマ](#-データベーススキーマ)
+- [🤖 AI 機能の詳細](#-ai-機能の詳細)
+- [🔧 カスタマイズ](#-カスタマイズ)
+- [🚨 トラブルシューティング](#-トラブルシューティング)
+- [📈 今後の改善計画](#-今後の改善計画)
+
+## �🚀 機能
 
 ### 基本機能
 
@@ -110,26 +125,114 @@ Python/
                        └──────────────────┘
 ```
 
-## 🚀 クイックスタート
+## 🛠️ インストール・セットアップ
 
-### 最速セットアップ（推奨）
+### 📦 リポジトリのクローン
+
+このプロジェクトを使用するには、まず GitHub からリポジトリをクローンしてください：
+
+#### SSH 接続（推奨）
 
 ```bash
-# 1. 一括で環境構築・起動
-make start
-
-# 2. ブラウザで確認
-make open        # チャットボット
-make open-pgadmin # pgAdmin
+# SSHキーが設定済みの場合
+git clone git@github.com:taienobutaka/Chatbot.git
+cd Chatbot
 ```
 
-**これだけで全ての環境構築から起動まで完了します！**
+#### HTTPS 接続
 
-### Makefile コマンド一覧
+```bash
+# HTTPSでクローン
+git clone https://github.com/taienobutaka/Chatbot.git
+cd Chatbot
+```
+
+### ⚡ 必要な環境
+
+以下がインストールされていることを確認してください：
+
+- **Docker**: 20.10+
+- **Docker Compose**: 2.0+
+- **Git**: 2.0+
+- **Make**: 任意（Makefile コマンドを使用する場合）
+
+### 🔧 環境確認
+
+```bash
+# Docker バージョン確認
+docker --version
+docker-compose --version
+
+# Git バージョン確認
+git --version
+
+# Make バージョン確認（任意）
+make --version
+```
+
+## 🚀 クイックスタート
+
+### 🔥 完全自動セットアップ（推奨）
+
+リポジトリをクローンした後、たった 1 つのコマンドで全て完了します：
+
+```bash
+# リポジトリクローン後のディレクトリで実行
+make start
+```
+
+**これだけで以下が自動実行されます：**
+
+- ✅ Docker 環境のチェック
+- ✅ 必要なイメージのビルド
+- ✅ PostgreSQL データベースの初期化
+- ✅ pgAdmin の設定
+- ✅ チャットボットアプリケーションの起動
+- ✅ ヘルスチェックの実行
+
+### 📱 アクセス確認
+
+起動完了後、以下のコマンドでブラウザを開けます：
+
+```bash
+make open         # チャットボット（http://localhost）
+make open-pgadmin # pgAdmin（http://localhost:8080）
+```
+
+### ⚡ 開発者向けクイックスタート
+
+```bash
+# 開発モードで起動（ログ表示付き）
+make dev
+
+# 基本機能テスト
+make test
+
+# サービス状態確認
+make status
+```
+
+### 🎯 手動セットアップ（従来方式）
+
+Makefile を使わない場合：
+
+```bash
+# 1. 環境構築・起動
+docker-compose up --build -d
+
+# 2. ログ確認
+docker-compose logs -f chatbot
+
+# 3. ブラウザでアクセス
+# http://localhost - チャットボット
+# http://localhost:8080 - pgAdmin
+```
+
+### 📋 利用可能な主要コマンド
 
 ```bash
 make help          # 全コマンドの説明を表示
-make start         # 🚀 環境構築から起動まで一括実行
+make start         # 🚀 完全セットアップ（初回推奨）
 make dev           # 🛠️ 開発モードで起動（ログ表示）
 make test          # 🧪 基本機能テスト
 make status        # 📊 サービス状態確認
@@ -428,6 +531,28 @@ INSERT INTO knowledge_base (keyword, response, category) VALUES
 - [ ] REST API 提供
 - [ ] ユーザー認証機能
 - [ ] チャットボット学習機能の向上
+
+## 📝 リポジトリ情報
+
+### 🔗 リンク
+
+- **GitHub**: https://github.com/taienobutaka/Chatbot
+- **SSH Clone**: `git@github.com:taienobutaka/Chatbot.git`
+- **HTTPS Clone**: `https://github.com/taienobutaka/Chatbot.git`
+
+### 👥 コントリビューション
+
+プルリクエストやイシューは歓迎します！以下の手順でご貢献ください：
+
+1. このリポジトリをフォーク
+2. フィーチャーブランチを作成（`git checkout -b feature/amazing-feature`）
+3. 変更をコミット（`git commit -m 'Add some amazing feature'`）
+4. ブランチにプッシュ（`git push origin feature/amazing-feature`）
+5. プルリクエストを作成
+
+### ⭐ サポート
+
+このプロジェクトが役に立った場合は、ぜひ GitHub でスターをつけてください！
 
 ## 📝 ライセンス
 
