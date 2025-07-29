@@ -170,11 +170,85 @@ git --version
 make --version
 ```
 
+### 🐳 Docker Desktop の起動
+
+**重要**: プロジェクトを開始する前に、Docker Desktop アプリケーションを立ち上げる必要があります。
+
+#### Windows の場合
+
+```bash
+# スタートメニューから「Docker Desktop」を検索して起動
+# または、デスクトップの Docker Desktop アイコンをダブルクリック
+```
+
+#### macOS の場合
+
+```bash
+# Launchpad または Applications フォルダから Docker Desktop を起動
+# または、Spotlight で「Docker Desktop」を検索
+```
+
+#### Linux の場合
+
+```bash
+# 多くの場合、Docker は systemd サービスとして動作
+sudo systemctl start docker
+
+# または Docker Desktop for Linux を使用している場合
+# アプリケーションメニューから Docker Desktop を起動
+```
+
+#### 🔍 Docker Desktop 起動確認
+
+Docker Desktop が正常に起動していることを確認してください：
+
+```bash
+# Docker デーモンが動作していることを確認
+docker info
+
+# 簡単な動作テスト
+docker run hello-world
+```
+
+**✅ Docker Desktop 起動完了の目安:**
+
+- タスクバー/システムトレイに Docker アイコンが表示される
+- Docker アイコンが緑色になる
+- `docker info` コマンドがエラーなく実行される
+
+⚠️ **注意**: Docker Desktop が起動していない場合、以下のエラーが発生します：
+
+```
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock
+```
+
 ## 🚀 クイックスタート
 
-### 🔥 完全自動セットアップ（推奨）
+### � 開始前のチェックリスト
 
-リポジトリをクローンした後、たった 1 つのコマンドで全て完了します：
+プロジェクトを開始する前に、以下を確認してください：
+
+1. ✅ リポジトリのクローン完了
+2. ✅ Docker Desktop アプリケーションが起動済み
+3. ✅ ターミナル/コマンドプロンプトでプロジェクトディレクトリに移動済み
+
+```bash
+# 現在地確認
+pwd
+# 結果例: /home/user/Chatbot
+
+# Docker 動作確認
+docker info
+# エラーが出ないことを確認
+
+# ファイル存在確認
+ls -la Makefile docker-compose.yml
+# 両ファイルが存在することを確認
+```
+
+### �🔥 完全自動セットアップ（推奨）
+
+上記チェックリスト完了後、たった 1 つのコマンドで全て完了します：
 
 ```bash
 # リポジトリクローン後のディレクトリで実行
@@ -502,7 +576,30 @@ INSERT INTO knowledge_base (keyword, response, category) VALUES
 
 ### よくある問題
 
-1. **ポート 80 が使用中**
+1. **Docker Desktop が起動していない**
+
+   **エラーメッセージ:**
+
+   ```
+   Cannot connect to the Docker daemon at unix:///var/run/docker.sock
+   Error response from daemon: dial unix /var/run/docker.sock: connect: no such file or directory
+   ```
+
+   **解決方法:**
+
+   ```bash
+   # Windows/macOS の場合
+   1. Docker Desktop アプリケーションを起動
+   2. システムトレイのDocker アイコンが緑色になるまで待機
+   3. 以下のコマンドで確認
+   docker info
+
+   # Linux の場合
+   sudo systemctl start docker
+   # または Docker Desktop for Linux を起動
+   ```
+
+2. **ポート 80 が使用中**
 
    ```bash
    # docker-compose.ymlの ports を変更
@@ -510,14 +607,14 @@ INSERT INTO knowledge_base (keyword, response, category) VALUES
      - "8080:5000"
    ```
 
-2. **データベース接続エラー**
+3. **データベース接続エラー**
 
    ```bash
    # PostgreSQLの起動を待つ
    docker-compose logs postgres
    ```
 
-3. **NLTK データエラー**
+4. **NLTK データエラー**
    ```bash
    # コンテナ内でNLTKデータをダウンロード
    docker-compose exec chatbot python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
